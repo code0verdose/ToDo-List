@@ -1,0 +1,24 @@
+.todo__item {
+    display: flex;
+    align-items: center;
+}
+.item__check {
+
+}
+.item__text {
+    color: #54595E;
+    line-height: 21px;
+    margin-left: 16px;
+}
+.btn-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+}
+.item__btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 21px;
+    margin-left: 16px;
+}

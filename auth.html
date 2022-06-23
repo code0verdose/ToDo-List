@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDo - Auth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="./style/auth.css">
+    <link rel="stylesheet" href="./style/item.css">
+</head>
+<body>
+<header class="header">
+    <h1 class="header__title">Sign-Up</h1>
+    <div class="btn__container">
+        <button class="btn btn--reg">Sign-Up</button>
+        <button class="btn btn--login">Sign-In</button>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="login">
+            <label for="fname"></label>
+            <input type="text" class="input__reg input" placeholder="First name" id="fname">
+            <label for="sname"></label>
+            <input type="text" class="input__reg input" placeholder="Surname" id="sname">
+            <label for="lname"></label>
+            <input type="text" class="input__reg input" placeholder="Last name" id="lname">
+            <label for="username"></label>
+            <input type="text" class="input__reg input" placeholder="Username" id="username">
+            <label for="email"></label>
+            <input type="email" class="input__reg input" placeholder="Email@email.com" id="email">
+            <label for="pass"></label>
+            <input type="password" class="input__reg input" placeholder="Password" id="pass">
+            <label for="sub"></label>
+            <input type="submit" value="Submit" id="sub" class="input__sub">
+        </div>
+        <div class="reg"></div>
+    </div>
+</main>
+<script src="./script/app.js"></script>
+</body>
+</html>

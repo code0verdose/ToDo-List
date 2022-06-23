@@ -1,0 +1,100 @@
+.btn__container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    max-width: 200px;
+    padding-top: 40px;
+}
+
+.login {
+    background: #FFF;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.16);
+    border-radius: 16px;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.btn--login {
+    padding: 10px 16px;
+    color: #000;
+    font-weight: 600;
+    line-height: 19px;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+    background: #fff;
+    border: 3px solid #000;
+    border-radius: 50px;
+}
+
+
+.btn--reg {
+    padding: 10px 16px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 19px;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+    background: #000;
+    border: 3px solid #000;
+    border-radius: 50px;
+}
+
+.btn--login:hover {
+    color: #fff;
+    background-color: #000;
+    transition: .3s;
+}
+
+.input__reg {
+    width: 330px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.input__reg:focus {
+    outline: 2px solid #000;
+}
+
+.input__reg::placeholder {
+    color: #54595E;
+    opacity: .5;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+}
+
+.input__sub {
+    color: #fff;
+    font-weight: 600;
+    line-height: 19px;
+    text-align: center;
+    cursor: pointer;
+    background: #000;
+    border: none;
+    border-radius: 50px;
+    min-width: 165px;
+    height: 38px;
+    margin: 0 auto;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    margin-top: 20px;
+}
+
+.input__sub:hover {
+    background-color: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-3px);
+}
