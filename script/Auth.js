@@ -11,7 +11,7 @@ sub.addEventListener('click', async function(){
         password: password.value,
         email: email.value,
     }
-    const res = fetch('http://localhost:5000/api/auth/register', {
+    const res = fetch('http:/localhost:5000/api/auth/register', {
         method: 'POST',
         headers:{
             'Access-Control-Allow-Origin': '*'
@@ -19,3 +19,4 @@ sub.addEventListener('click', async function(){
         body: JSON.stringify(data)
     })
 })
+
