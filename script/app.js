@@ -85,12 +85,19 @@ subLog.addEventListener('click', async () => {
             if (res.status === 200) {
                 loginForm.innerHTML = ""
                 loginForm.insertAdjacentHTML('beforeend', '<p style="text-align:center; color: #2EE59D;font-size: 16px;">Успешная авторизация!</p>')
+
             }
             return res.json()
         })
         .then((data) => {
             logAlert.innerHTML = ''
             logAlert.insertAdjacentHTML('beforeend', `<p style="text-align:center; color: #a82a38;font-size: 16px; margin-top: 20px;">${data.message}</p>`)
+            return data
+        })
+        .then((data) => {
+            if (data.message === undefined) {
+                window.localStorage.setItem('access_token', data)
+            }
         })
 })
 
