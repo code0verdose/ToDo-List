@@ -25,26 +25,26 @@
     <div class="container">
         <div class="reg">
             <label for="fname"></label>
-            <input type="text" class="input__reg input" placeholder="First name" id="fname">
+            <input required type="text" class="input__reg input" placeholder="First name" id="fname">
             <label for="username"></label>
-            <input type="text" class="input__reg input" placeholder="Username" id="username">
+            <input required type="text" class="input__reg input" placeholder="Username" id="username">
             <label for="email"></label>
-            <input type="email" class="input__reg input" placeholder="Email@email.com" id="email">
+            <input required type="email" class="input__reg input" placeholder="Email@email.com" id="email">
             <label for="pass"></label>
-            <input type="password" class="input__reg input" placeholder="Password" id="pass">
+            <input required type="password" class="input__reg input" placeholder="Password" id="pass">
             <input type="submit" value="Submit" id="sub_reg" class="input__sub">
             <div class="reg__alert"></div>
         </div>
         <div class="login">
             <label for="username_login"></label>
-            <input type="text" class="input__reg input" placeholder="Username" id="username_login">
+            <input required type="text" class="input__reg input" placeholder="Username" id="username_login">
             <label for="pass_login"></label>
-            <input type="password" class="input__reg input" placeholder="Password" id="pass_login">
+            <input required type="password" class="input__reg input" placeholder="Password" id="pass_login">
             <input type="submit" value="Submit" id="sub_login" class="input__sub">
             <div class="log__alert"></div>
         </div>
     </div>
 </main>
-<script src="./script/app.js"></script>
+<script type="module" src="./script/auth.js"></script>
 </body>
 </html>

@@ -33,19 +33,19 @@
     <div class="container">
         <div class="todo">
             <div class="todo__header">
-                <input type="text" class="input__text input" id="input__text">
+                <input type="text" class="input__text input" required id="input__text">
                 <input type="submit" value="Добавить" id="input__add">
             </div>
             <div class="todo__body">
-                <div class="todo__item">
-                    <label for="input__check"></label>
-                    <input type="checkbox" class="item__check" name="checkbox" id="input__check">
-                    <p class="item__text">Lorem ipsum dolor sit amet.</p>
-                    <div class="btn-wrapper">
-                        <button class="btn__change item__btn">✏️</button>
-                        <button class="btn__del item__btn">❌</button>
-                    </div>
-                </div>
+<!--                <div class="todo__item">-->
+<!--                    <label for="input__check"></label>-->
+<!--                    <input type="checkbox" class="item__check" name="checkbox" id="input__check">-->
+<!--                    <p class="item__text">Lorem ipsum dolor sit amet.</p>-->
+<!--                    <div class="btn-wrapper">-->
+<!--                        <button class="btn__change item__btn">✏️</button>-->
+<!--                        <button class="btn__del item__btn">❌</button>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
             <div class="todo__footer">
                 <input type="submit" value="Удалить завершенные" id="input__delete">
@@ -55,6 +55,6 @@
     </div>
 </main>
 
-<script src="./script/app.js"></script>
+<script type="module" src="./script/app.js"></script>
 </body>
 </html>

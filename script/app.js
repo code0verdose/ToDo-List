@@ -1,122 +1,89 @@
-//Получаю элементы страницы (инпуты)
-const subReg = document.getElementById('sub_reg')
-const subLog = document.getElementById('sub_login')
-const fname = document.getElementById('fname')
-const username = document.getElementById('username')
-const password = document.getElementById('pass')
-const email = document.getElementById('email')
-const regAlert = document.querySelector('.reg__alert')
-const logAlert = document.querySelector('.log__alert')
-const regForm = document.querySelector('.reg')
-const loginForm = document.querySelector('.login')
-const btnToIn = document.querySelector('.btn--login')
-const btnToUp = document.querySelector('.btn--reg')
-const usernameLogin = document.getElementById('username_login')
-const passwordLogin = document.getElementById('pass_login')
+const btnAdd = document.getElementById('input__add')
+const inputText = document.getElementById('input__text')
+const todoBody = document.querySelector('.todo__body')
 
 
-//Ставлю прослушку на кнопку subReg (Регистрация)
-subReg.addEventListener('click', async () => {
+//Добавление задачи в список
+btnAdd.addEventListener('click', async () => {
 
-    //Создаю объект для body запроса
     const data = {
-        fname: fname.value,
-        username: username.value,
-        password: password.value,
-        email: email.value,
+        name: inputText.value,
+        isDone: false,
     }
 
-    //Отправляю запрос с данными из формы
-    const res = fetch('http://localhost:5000/api/auth/register', {
+    const res = await fetch('http://localhost:5000/api/list/add', {
         method: 'POST',
         headers: {
+            Authorization: `Bearer ${localStorage.access_token}`,
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json'
-
         },
-        body: JSON.stringify(data)
-    })
-
-        //Обработка ошибок
-        .then((res) => {
-            if (res.status === 500) {
-                regAlert.innerHTML = ""
-                regAlert.insertAdjacentHTML('beforeend', '<p style="text-align:center; color: #a82a38;font-size: 16px; margin-top: 20px;">Пользователь уже существует!</p>')
-
-            }
-            if (res.status === 201) {
-                regForm.innerHTML = ""
-                regForm.insertAdjacentHTML('beforeend', '<p style="text-align:center; color: #2EE59D;font-size: 16px;">Пользователь успешно зарегистрирован!</p>')
-            }
-            return res.json()
-
-        })
-        .then((data) => {
-            data.errors.forEach((elem) => {
-                regAlert.innerHTML = ''
-                regAlert.insertAdjacentHTML('beforeend', `<p style="text-align:center; color: #a82a38;font-size: 16px; margin-top: 20px;">${elem.msg}</p>`)
-
-            })
-
-        })
-})
-
-
-//Ставлю прослушку на кнопку subLog (Авторизация)
-subLog.addEventListener('click', async () => {
-    const data = {
-        username: usernameLogin.value,
-        password: passwordLogin.value,
-    }
-
-    //Отправляю запрос с данными из формы
-    const res = fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-
-        },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     })
 
         //Обработка ошибок
         .then((res) => {
             if (res.status === 200) {
-                loginForm.innerHTML = ""
-                loginForm.insertAdjacentHTML('beforeend', '<p style="text-align:center; color: #2EE59D;font-size: 16px;">Успешная авторизация!</p>')
-
+                drawList(inputText.value)
             }
+
             return res.json()
         })
         .then((data) => {
-            logAlert.innerHTML = ''
-            logAlert.insertAdjacentHTML('beforeend', `<p style="text-align:center; color: #a82a38;font-size: 16px; margin-top: 20px;">${data.message}</p>`)
-            return data
-        })
-        .then((data) => {
-            if (data.message === undefined) {
-                window.localStorage.setItem('access_token', data)
-            }
+            data.errors.forEach((elem) => {
+                inputText.placeholder = `${elem.msg}`
+            })
         })
 })
 
+//Отрисовка задач пользоваткля по токену
+window.addEventListener('load', async () => {
 
-//Смена типа авторизации (Зарегистрироваться/Войти)
-btnToIn.addEventListener('click', () => {
-    regForm.style.display = 'none'
-    loginForm.style.display = 'flex'
-    btnToIn.style.color = '#fff'
-    btnToIn.style.background = '#000'
-    btnToUp.style.color = '#000'
-    btnToUp.style.background = '#fff'
+    const res = await fetch('http://localhost:5000/api/list/draw', {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${localStorage.access_token}`,
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+        },
+    });
+
+    const data = await res.json();
+
+    data.forEach((elem) => {
+        drawList(elem.name)
+    })
 })
 
-btnToUp.addEventListener('click', () => {
-    loginForm.style.display = 'none'
-    regForm.style.display = 'flex'
-    btnToUp.style.color = '#fff'
-    btnToUp.style.background = '#000'
-    btnToIn.style.color = '#000'
-    btnToIn.style.background = '#fff'
-})
+
+//Функция отрисовки задачи
+function drawList(value) {
+    const item = document.createElement('div');
+    item.className = 'todo__item';
+    todoBody.append(item);
+
+    const checkBox = document.createElement('input');
+    checkBox.type = 'checkbox';
+    checkBox.className = 'input__check';
+    item.append(checkBox);
+
+    const listText = document.createElement('p');
+    listText.className = 'item__text';
+    listText.textContent = value;
+    item.append(listText);
+
+    const editWrap = document.createElement('div');
+    editWrap.className = 'btn-wrapper';
+    item.append(editWrap)
+
+    const editTask = document.createElement('button')
+    editTask.className = 'btn__change item__btn'
+    editTask.textContent = '✏️'
+    editWrap.append(editTask)
+
+    const delTask = document.createElement('button')
+    delTask.className = 'btn__del item__btn'
+    delTask.textContent = '❌'
+    editWrap.append(delTask)
+}
+
